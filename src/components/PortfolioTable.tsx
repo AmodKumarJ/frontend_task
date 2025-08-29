@@ -7,6 +7,7 @@ import {
   getSortedRowModel,
   flexRender,
   createColumnHelper,
+  type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { 
@@ -43,7 +44,7 @@ interface PortfolioTableProps {
 }
 
 export default function PortfolioTable({ stocks }: PortfolioTableProps) {
-  const [sorting, setSorting] = useState([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const columnHelper = createColumnHelper<Stock>();
 

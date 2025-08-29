@@ -7,11 +7,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import { TrendingUp, TrendingDown, BarChart3, Target } from "lucide-react";
+import { TrendingUp, TrendingDown, BarChart3 } from "lucide-react";
 
 interface SectorSummary {
   sector: string;
@@ -55,22 +54,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 
-const GradientBar = (props: any) => {
-  const { payload } = props;
-  const isPositive = payload?.totalGainLoss >= 0;
-  
-  return (
-    <Bar
-      {...props}
-      fill={isPositive ? "url(#positiveGradient)" : "url(#negativeGradient)"}
-      radius={[4, 4, 0, 0]}
-    />
-  );
-};
-
 export default function SectorBarChart({ sectors }: SectorBarChartProps) {
-  
-  const totalGainLoss = sectors.reduce((sum, sector) => sum + sector.totalGainLoss, 0);
   
   return (
     <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border border-gray-200 overflow-hidden">

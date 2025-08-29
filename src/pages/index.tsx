@@ -51,7 +51,7 @@ export default function Home() {
 
   // Initial portfolio load (Excel + base data)
   useEffect(() => {
-    fetch("http://localhost:3001/api/portfolio")
+    fetch("https://stocklens-53dw.onrender.com/api/portfolio")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
@@ -76,7 +76,7 @@ export default function Home() {
       data.portfolio.forEach(async (stock) => {
         try {
           const res = await fetch(
-            `http://localhost:3001/api/stocks/${stock.exchange || stock.name}`
+            `https://stocklens-53dw.onrender.com/api/stocks/${stock.exchange || stock.name}`
           );
           if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
           const liveData = await res.json();
@@ -105,7 +105,7 @@ export default function Home() {
           console.error(`Error refreshing stock ${stock.name}:`, err);
         }
       });
-    }, 15000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, [data?.portfolio]);
